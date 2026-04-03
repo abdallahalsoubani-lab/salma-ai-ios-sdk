@@ -1,0 +1,92 @@
+
+export:
+  #THE BELOW LINE IS TO FIX IOS 16 CRASH
+  #COMMENT THE BELOW LINE IF YOU ARE CREATING THE IPA USING XCODE 14
+  #embed-bitcode: false
+  signing: true
+  # identity: 66451272C6E12E5005CF8154492915AF3E307127
+  # provisioning:
+  #    - /Users/akramahmad/Downloads/akrammawdoo3.mobileprovision
+
+license:
+    - "/Users/soubani/Desktop/ixguard-license.txt"
+
+debug:
+  autoconfigure: false
+  verbosity: debug
+
+protection:
+  enabled: true
+
+  names:
+    enabled: true
+    obfuscate-metadata: false
+    strict-framework-exclusion: true
+    obfuscate-symbols: true
+    hide-symbols: true
+    hide-as-private: false
+    hide-swift-reflectionmd: true
+    denylist:
+      - "CNIOBoringSSL_OPENSSL_armcap_P"
+
+  code-integrity:
+    enabled: true
+
+    objc-calls:
+      enabled: true
+      denylist:
+      - 'colorNamed:inBundle:compatibleWithTraitCollection:'
+      - '_methodInvoked:withArguments:'
+      - '_sentMessage:withArguments:'
+      - currentFrame
+      - dealloc
+      - 'imageNamed:inBundle:compatibleWithTraitCollection:'
+      - 'initOverWithNamed:in:compatibleWith:'
+      - 'initOverWithNamed:in:compatibleWith:'
+      - 'setCurrentFrame:'
+      - swizzledDealloc
+      structured-denylist:
+        interfaces:
+          - name: ".*(swizzle|InfrastructureMethods|RxCocoa|RXObjCRuntime).*"
+            instancemethods:
+              - name: ".*"
+
+    functions:
+      enabled: true
+
+    tracing:
+      enabled: true
+
+    system-library:
+      enabled: true
+
+  control-flow:
+    enabled: true
+    logic:
+      enabled: true
+    calls:
+      enabled: true
+
+  environment-integrity:
+    enabled: true
+    debugger:
+      enabled: true
+      aggressiveness: min
+    jailbreak:
+      enabled: true
+    emulator:
+      enabled: true
+    touch-simulation:
+      enabled: true
+
+  arithmetic-operations:
+    enabled: true
+
+  data:
+    enabled: true
+
+  app-integrity:
+    enabled: true
+
+  resources:
+    enabled: true
